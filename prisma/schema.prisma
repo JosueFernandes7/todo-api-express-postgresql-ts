@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Todo {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  dueDate     DateTime
+  createdAt   DateTime  @default(now())
+  isCompleted Boolean   @default(false)
+  userId      Int
+  categoryId  Int?      // Opcional
+  user        User      @relation(fields: [userId], references: [id])
+  category    Category? @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id         Int       @id @default(autoincrement())
+  name       String
+  userId     Int
+  todos      Todo[]
+  user       User      @relation(fields: [userId], references: [id])
+  sharedWith User[]    @relation("CategoryShared")
+}
+
+model User {
+  id               Int        @id @default(autoincrement())
+  email            String     @unique
+  password         String
+  todos            Todo[]
+  categories       Category[]
+  sharedCategories Category[] @relation("CategoryShared")
+}
+
