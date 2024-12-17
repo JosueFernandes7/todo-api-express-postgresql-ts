@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "��#\u0000 \u0000J\u0000o\u0000s\u0000u\u0000e\u0000F\u0000e\u0000r\u0000n\u0000a\u0000n\u0000d\u0000e\u0000s\u00007\u0000-\u0000t\u0000o\u0000d\u0000o\u0000-\u0000a\u0000p\u0000i\u0000-\u0000e\u0000x\u0000p\u0000r\u0000e\u0000s\u0000s\u0000-\u0000p\u0000o\u0000s\u0000t\u0000g\u0000r\u0000e\u0000s\u0000q\u0000l\u0000-\u0000t\u0000s\u0000\r\u0000 \u0000",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx src/server.ts",
     "db": "docker-compose up -d"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "swagger-jsdoc": "^6.2.8",
