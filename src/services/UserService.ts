@@ -2,7 +2,7 @@ import { hash, compare } from "bcrypt";
 import { UserRepository } from "../repositories/UserRepository.js";
 import { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
-import { env } from "../env.js";
+import { env } from "../config/env.js";
 
 class UserService {
   private userRepository: UserRepository;

@@ -5,12 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx --watch src/server.ts",
+    "dev": "tsx --watch src/config/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/config/server.js",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
-    "seed": "tsx src/config/seed.ts",
     "studio": "prisma studio",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down"

@@ -9,6 +9,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"], // Inclui todos os arquivos TS na pasta src
-  "exclude": ["node_modules"] // Exclui a pasta node_modules
+  "include": ["src/**/*.ts"], 
+  "exclude": ["node_modules"] 
 }

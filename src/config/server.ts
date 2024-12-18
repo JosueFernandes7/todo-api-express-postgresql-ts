@@ -1,4 +1,4 @@
-import App from "./app.js";
+import App from "../app.js";
 import { env } from "./env.js";
 
 const PORT = Number(env.PORT) || 3000;
