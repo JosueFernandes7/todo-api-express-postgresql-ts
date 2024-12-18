@@ -26,7 +26,7 @@ class UserService {
     if (!isPasswordValid) throw new Error("Invalid Password");
 
     const token = jwt.sign({ id: user.id, email: user.email }, env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "8h",
     });
 
     return token
