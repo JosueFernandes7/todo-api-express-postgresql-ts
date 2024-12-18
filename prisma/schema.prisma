@@ -16,7 +16,7 @@ model Todo {
   isCompleted Boolean   @default(false)
   userId      Int
   categoryId  Int?      // Opcional
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   category    Category? @relation(fields: [categoryId], references: [id])
 }
 
@@ -25,7 +25,7 @@ model Category {
   name       String
   userId     Int
   todos      Todo[]
-  user       User      @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   sharedWith User[]    @relation("CategoryShared")
 }
 
@@ -37,4 +37,3 @@ model User {
   categories       Category[]
   sharedCategories Category[] @relation("CategoryShared")
 }
-

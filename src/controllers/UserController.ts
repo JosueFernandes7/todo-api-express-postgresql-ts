@@ -34,7 +34,7 @@ class UserController {
       const user = await this.userService.validateUser(email, password);
 
       return res.status(200).json({
-        message: "Login realizado com sucesso",
+        message: "User logged in successfully",
         user: { id: user.id, email: user.email },
       });
     } catch (error: any) {

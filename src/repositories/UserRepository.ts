@@ -4,6 +4,12 @@ const prisma = new PrismaClient();
 
 class UserRepository {
   async createUser(email: string, hashedPassword: string): Promise<User> {
+    const existingUser = await this.findUserByEmail(email);
+
+    if (existingUser) {
+      throw new Error("Email already exists");
+    }
+
     return await prisma.user.create({
       data: {
         email,
