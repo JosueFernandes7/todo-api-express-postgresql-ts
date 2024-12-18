@@ -31,12 +31,9 @@ class UserController {
   async login(req: Request, res: Response): Promise<any> {
     try {
       const { email, password } = req.body;
-      const user = await this.userService.validateUser(email, password);
+      const token = await this.userService.validateUser(email, password);
 
-      return res.status(200).json({
-        message: "User logged in successfully",
-        user: { id: user.id, email: user.email },
-      });
+      res.status(200).json({ message: "Login successful", token });
     } catch (error: any) {
       return res.status(401).json({ error: error.message });
     }
