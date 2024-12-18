@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-
+import routes from "./routes/index.js";
 class App {
   public app: Application;
 
@@ -14,9 +14,7 @@ class App {
   }
 
   private initializeRoutes(): void {
-    this.app.get("/", (req, res) => {
-      res.send("Hello World!");
-    });
+    this.app.use("/api", routes);
   }
 
   public listen(port: number): void {
@@ -25,6 +23,5 @@ class App {
     });
   }
 }
-
 
 export default App;
