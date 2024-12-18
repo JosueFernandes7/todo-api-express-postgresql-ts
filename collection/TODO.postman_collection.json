@@ -65,6 +65,32 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "PROFILE",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzQ0ODU3NDYsImV4cCI6MTczNDUxNDU0Nn0.GcnUYbXnr5JferOnbobVAAAh7TMingCYVbiPMi1hyLg"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/users/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
