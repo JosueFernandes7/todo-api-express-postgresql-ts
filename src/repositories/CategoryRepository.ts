@@ -3,6 +3,33 @@ import { PrismaClient, Category } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class CategoryRepository {
+  async shareCategoryWithUser(
+    categoryId: number,
+    userId: number
+  ): Promise<void> {
+    await prisma.category.update({
+      where: { id: categoryId },
+      data: {
+        sharedWith: {
+          connect: { id: userId },
+        },
+      },
+    });
+  }
+
+  async getSharedCategories(userId: number) {
+    return await prisma.category.findMany({
+      where: {
+        sharedWith: {
+          some: { id: userId },
+        },
+      },
+      include: {
+        todos: true,
+      },
+    });
+  }
+
   async getCategoriesWithTodos(
     userId: number,
     page: number,
@@ -29,6 +56,7 @@ class CategoryRepository {
 
     return { categories, total };
   }
+
   async createCategory(userId: number, name: string): Promise<Category> {
     return await prisma.category.create({
       data: { userId, name },

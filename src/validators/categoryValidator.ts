@@ -20,4 +20,8 @@ const categorySchema = z.object({
   name: z.string().min(3, "Category name must be at least 3 characters long"),
 });
 
-export { listCategoriesSchema, categorySchema };
+const shareCategorySchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+export { listCategoriesSchema, categorySchema, shareCategorySchema };
