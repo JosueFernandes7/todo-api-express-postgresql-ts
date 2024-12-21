@@ -39,6 +39,22 @@ class TodoRepository {
       },
     });
   }
+
+  async findOverdueTodosByUserId(userId: number): Promise<Todo[]> {
+    return await prisma.todo.findMany({
+      where: {
+        userId,
+        isCompleted: false,
+        dueDate: {
+          lt: new Date(), // Due date is in the past
+        },
+      },
+      orderBy: {
+        dueDate: "asc",
+      },
+    });
+  }
+  
   
 }
 

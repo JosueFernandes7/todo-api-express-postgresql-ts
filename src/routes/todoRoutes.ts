@@ -14,4 +14,6 @@ router.post(
 );
 
 router.get("/pending", authMiddleware, todoController.getPendingTodos);
+router.get("/overdue", authMiddleware, todoController.getOverdueTodos);
+
 export { router as todoRoutes };

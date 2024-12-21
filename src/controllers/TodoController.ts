@@ -9,6 +9,8 @@ class TodoController {
     this.todoService = new TodoService();
 
     this.createTodo = this.createTodo.bind(this);
+    this.getPendingTodos = this.getPendingTodos.bind(this);
+    this.getOverdueTodos = this.getOverdueTodos.bind(this);
   }
 
   async createTodo(req: AuthRequest, res: Response): Promise<void> {
@@ -48,6 +50,21 @@ class TodoController {
       }
   
       const todos = await this.todoService.getPendingTodos(userId);
+      res.status(200).json({ todos }); // Retornar o array dentro de um objeto
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }  
+  
+  async getOverdueTodos(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+      }
+  
+      const todos = await this.todoService.getOverdueTodos(userId);
       res.status(200).json(todos);
     } catch (error: any) {
       res.status(500).json({ error: error.message });

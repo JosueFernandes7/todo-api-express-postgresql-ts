@@ -37,6 +37,11 @@ class TodoService {
   async getPendingTodos(userId: number): Promise<Todo[]> {
     return await this.todoRepository.findPendingTodosByUserId(userId);
   }
+
+  async getOverdueTodos(userId: number): Promise<Todo[]> {
+    return await this.todoRepository.findOverdueTodosByUserId(userId);
+  }
+  
   
 }
 
