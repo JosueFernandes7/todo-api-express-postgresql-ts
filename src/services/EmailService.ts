@@ -15,19 +15,19 @@ class EmailService {
   }
 
   async sendVerificationEmail(email: string, token: string): Promise<void> {
-    const verificationLink = `${env.BASE_URL}/api/users/verify?token=${token}`;
-    console.log("AQUI");
-    console.log(verificationLink);
+    // const verificationLink = `${env.BASE_URL}/api/users/verify?token=${token}`;
+    // console.log("AQUI");
+    // console.log(verificationLink);
     
-    const mailOptions = {
-      from: env.EMAIL_USER,
-      to: email,
-      subject: "Email Verification",
-      text: `Please verify your email by clicking on the following link: ${verificationLink}`,
-      html: `<p>Please verify your email by clicking on the link below:</p><a href="${verificationLink}">Verify Email</a>`,
-    };
+    // const mailOptions = {
+    //   from: env.EMAIL_USER,
+    //   to: email,
+    //   subject: "Email Verification",
+    //   text: `Please verify your email by clicking on the following link: ${verificationLink}`,
+    //   html: `<p>Please verify your email by clicking on the link below:</p><a href="${verificationLink}">Verify Email</a>`,
+    // };
 
-    await this.transporter.sendMail(mailOptions);
+    // await this.transporter.sendMail(mailOptions);
   }
 }
 
