@@ -5,4 +5,8 @@ const authSchema = z.object({
   password: z.string().min(6, "The password should have at least 6 characters"),
 });
 
-export { authSchema };
+const resendEmailSchema = z.object({
+  email: z.string().email("E-mail is invalid"),
+});
+
+export { authSchema, resendEmailSchema };

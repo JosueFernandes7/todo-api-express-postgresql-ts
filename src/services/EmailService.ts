@@ -15,7 +15,9 @@ class EmailService {
   }
 
   async sendVerificationEmail(email: string, token: string): Promise<void> {
-    const verificationLink = `${env.BASE_URL}/api/users/verify-email?token=${token}`;
+    const verificationLink = `${env.BASE_URL}/api/users/verify?token=${token}`;
+    console.log("AQUI");
+    console.log(verificationLink);
     
     const mailOptions = {
       from: env.EMAIL_USER,

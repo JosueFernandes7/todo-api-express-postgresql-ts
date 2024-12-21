@@ -33,6 +33,16 @@ class UserRepository {
       },
     });
   }
+
+  async updateEmailVerificationStatus(
+    id: number,
+    isVerifield: boolean
+  ): Promise<void> {
+    await prisma.user.update({
+      where: { id },
+      data: { isEmailVerified: isVerifield },
+    });
+  }
 }
 
 export { UserRepository };
