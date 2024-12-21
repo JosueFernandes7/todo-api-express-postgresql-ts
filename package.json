@@ -1,7 +1,7 @@
 {
   "name": "trab4_josue",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000J\u0000o\u0000s\u0000u\u0000e\u0000F\u0000e\u0000r\u0000n\u0000a\u0000n\u0000d\u0000e\u0000s\u00007\u0000-\u0000t\u0000o\u0000d\u0000o\u0000-\u0000a\u0000p\u0000i\u0000-\u0000e\u0000x\u0000p\u0000r\u0000e\u0000s\u0000s\u0000-\u0000p\u0000o\u0000s\u0000t\u0000g\u0000r\u0000e\u0000s\u0000q\u0000l\u0000-\u0000t\u0000s\u0000\r\u0000 \u0000",
+  "description": "Trabalho IV - TODO API: Backend com Express, PostgreSQL e TypeScript",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -23,6 +23,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.16",
     "prisma": "^6.1.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
@@ -33,6 +34,7 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
+    "@types/nodemailer": "^6.4.17",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }

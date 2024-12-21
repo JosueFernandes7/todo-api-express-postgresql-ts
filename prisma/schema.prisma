@@ -33,7 +33,10 @@ model User {
   id               Int        @id @default(autoincrement())
   email            String     @unique
   password         String
+  isEmailVerified  Boolean    @default(false)
+  emailVerifyToken String?    // Token para validação de email
   todos            Todo[]
   categories       Category[]
   sharedCategories Category[] @relation("CategoryShared")
 }
+
