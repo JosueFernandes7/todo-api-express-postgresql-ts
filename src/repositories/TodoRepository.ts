@@ -54,6 +54,33 @@ class TodoRepository {
       },
     });
   }
+
+  async updateTodoStatus(id: number, userId: number, isCompleted: boolean): Promise<Todo | null> {
+    const existingTodo = await prisma.todo.findFirst({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    console.log(existingTodo);
+    
+  
+    if (!existingTodo) {
+      throw new Error("Todo not found or does not belong to the user.");
+    }
+  
+    return await prisma.todo.update({
+      where: {
+        id: existingTodo.id,
+      },
+      data: {
+        isCompleted,
+      },
+    });    
+  }
+  
+  
   
   
 }

@@ -10,4 +10,8 @@ const createSchema = z.object({
   categoryId: z.number().optional(),
 });
 
-export { createSchema };
+const updateStatusSchema = z.object({
+  todoId: z.number().nonnegative("Todo Id should be positive "),
+  isCompleted: z.boolean()
+})
+export { createSchema, updateStatusSchema };

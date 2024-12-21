@@ -42,6 +42,20 @@ class TodoService {
     return await this.todoRepository.findOverdueTodosByUserId(userId);
   }
   
+  async updateTodoStatus(
+    todoId: number,
+    userId: number,
+    isCompleted: boolean
+  ): Promise<Todo> {
+    const updatedTodo = await this.todoRepository.updateTodoStatus(todoId, userId, isCompleted);
+  
+    if (!updatedTodo) {
+      throw new Error("TODO not found or you do not have permission to update it.");
+    }
+  
+    return updatedTodo;
+  }
+  
   
 }
 
