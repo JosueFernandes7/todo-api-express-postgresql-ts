@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: TODO API
+  description: API para gerenciamento de TODOs, com categorias e compartilhamento.
+  version: 1.0.0
+paths:
+  /api/users/verify:
+    get:
+      summary: Verifica o token enviado por e-mail
+      description: Endpoint para validar o token enviado ao e-mail do usuário, confirmando o cadastro.
+      parameters:
+      - name: token
+        in: query
+        description: Token enviado por e-mail para verificação.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Email verificado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email verified successfully"
+        400:
+          description: Erro na verificação do token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    examples:
+                      alreadyVerified:
+                        value: "Email already verified"
+                      invalidSignature:
+                        value: "invalid signature"
+        500:
+          description: Erro interno do servidor.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error"
