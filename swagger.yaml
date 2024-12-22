@@ -1,23 +1,23 @@
 openapi: 3.0.0
 info:
   title: TODO API
-  description: API para gerenciamento de TODOs, com categorias e compartilhamento.
   version: 1.0.0
 paths:
+  # User Routes
   /api/users/verify:
     get:
-      summary: Verifica o token enviado por e-mail
-      description: Endpoint para validar o token enviado ao e-mail do usuário, confirmando o cadastro.
+      summary: Verificar e-mail
+      description: Valida o token enviado por e-mail para verificar o cadastro do usuário.
       parameters:
       - name: token
         in: query
-        description: Token enviado por e-mail para verificação.
         required: true
         schema:
           type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
       responses:
         200:
-          description: Email verificado com sucesso.
+          description: E-mail verificado com sucesso.
           content:
             application/json:
               schema:
@@ -27,7 +27,7 @@ paths:
                     type: string
                     example: "Email verified successfully"
         400:
-          description: Erro na verificação do token.
+          description: Erro na verificação do e-mail.
           content:
             application/json:
               schema:
@@ -35,13 +35,49 @@ paths:
                 properties:
                   error:
                     type: string
-                    examples:
-                      alreadyVerified:
-                        value: "Email already verified"
-                      invalidSignature:
-                        value: "invalid signature"
-        500:
-          description: Erro interno do servidor.
+                    example: "Invalid token"
+  /api/users/register:
+    post:
+      summary: Registrar usuário
+      description: Cadastra um novo usuário na aplicação.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "example@gmail.com"
+                password:
+                  type: string
+                  example: "123456"
+              required:
+              - email
+              - password
+      responses:
+        200:
+          description: Usuário registrado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User created successfully. Please verify your email."
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: "example@gmail.com"
+        400:
+          description: Erro ao registrar usuário.
           content:
             application/json:
               schema:
@@ -49,4 +85,293 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Internal server error"
+                    example: "Email already exists"
+  /api/users/login:
+    post:
+      summary: Login do usuário
+      description: Autentica o usuário e retorna um token JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "example@gmail.com"
+                password:
+                  type: string
+                  example: "123456"
+              required:
+              - email
+              - password
+      responses:
+        200:
+          description: Login realizado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Login successful"
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        400:
+          description: Erro de validação dos dados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        validation:
+                          type: string
+                          example: "email"
+                        code:
+                          type: string
+                          example: "invalid_string"
+                        message:
+                          type: string
+                          example: "E-mail is invalid"
+        401:
+          description: Credenciais inválidas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid Password"
+  /api/users/resend-verification:
+    post:
+      summary: Reenviar e-mail de verificação
+      description: Envia novamente o e-mail de verificação para o usuário.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "email@gmail.com"
+              required:
+              - email
+      responses:
+        200:
+          description: E-mail de verificação reenviado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Verification email resent successfully."
+        400:
+          description: Erro ao reenviar e-mail de verificação.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "User not found"
+  # Todo Routes
+  /api/todos/pending:
+    get:
+      summary: Listar tarefas pendentes
+      description: Retorna todas as tarefas pendentes do usuário.
+      responses:
+        200:
+          description: Tarefas pendentes listadas com sucesso.
+  /api/todos/overdue:
+    get:
+      summary: Listar tarefas atrasadas
+      description: Retorna todas as tarefas atrasadas do usuário.
+      responses:
+        200:
+          description: Tarefas atrasadas listadas com sucesso.
+  /api/todos:
+    post:
+      summary: Criar tarefa
+      description: Cria uma nova tarefa na aplicação.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Nova Tarefa"
+                description:
+                  type: string
+                  example: "Descrição da tarefa"
+                dueDate:
+                  type: string
+                  format: date-time
+                  example: "2024-12-31T23:59:59.000Z"
+                categoryId:
+                  type: integer
+                  example: 7
+              required:
+              - title
+              - description
+              - dueDate
+              - categoryId
+      responses:
+        201:
+          description: Tarefa criada com sucesso.
+        400:
+          description: Erro ao criar tarefa.
+  /api/todos/status:
+    patch:
+      summary: Atualizar status da tarefa
+      description: Atualiza o status de conclusão de uma tarefa.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                todoId:
+                  type: integer
+                  example: 9
+                isCompleted:
+                  type: boolean
+                  example: true
+              required:
+              - todoId
+              - isCompleted
+      responses:
+        200:
+          description: Status da tarefa atualizado com sucesso.
+  # Category Routes
+  /api/categories/with-todos:
+    get:
+      summary: Listar categorias com tarefas
+      description: Retorna as categorias associadas às tarefas.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          example: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          example: 10
+      - name: orderBy
+        in: query
+        schema:
+          type: string
+          example: "asc"
+      responses:
+        200:
+          description: Categorias listadas com sucesso.
+  /api/categories/shared:
+    get:
+      summary: Listar categorias compartilhadas
+      description: Retorna as categorias compartilhadas com o usuário.
+      responses:
+        200:
+          description: Categorias compartilhadas listadas com sucesso.
+  /api/categories:
+    post:
+      summary: Criar categoria
+      description: Cria uma nova categoria na aplicação.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Nova Categoria"
+              required:
+              - name
+      responses:
+        201:
+          description: Categoria criada com sucesso.
+  /api/categories/{id}/share:
+    post:
+      summary: Compartilhar categoria
+      description: Compartilha uma categoria com outro usuário.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "example@gmail.com"
+              required:
+              - email
+      responses:
+        200:
+          description: Categoria compartilhada com sucesso.
+  /api/categories/{id}:
+    put:
+      summary: Atualizar categoria
+      description: Atualiza as informações de uma categoria existente.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Categoria Atualizada"
+              required:
+              - name
+      responses:
+        200:
+          description: Categoria atualizada com sucesso.
+    delete:
+      summary: Deletar categoria
+      description: Remove uma categoria da aplicação.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 4
+      responses:
+        204:
+          description: Categoria deletada com sucesso.
