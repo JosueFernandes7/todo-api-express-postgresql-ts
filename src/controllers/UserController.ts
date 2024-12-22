@@ -51,7 +51,6 @@ class UserController {
     try {
       const { token } = req.query;
       if (!token) return res.status(400).json({ error: "Token is required" });
-      console.log("TOKEN", token);
       
       await this.userService.verifyEmail(token as string);
       res.status(200).json({ message: "Email verified successfully" });

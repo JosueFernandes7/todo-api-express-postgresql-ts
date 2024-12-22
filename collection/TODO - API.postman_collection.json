@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"ja.josuemf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -28,7 +28,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphLmpvc3VlbWZAZ21haWwuY29tIiwiaWF0IjoxNzM0ODIyNjkxLCJleHAiOjE3MzQ4NjU4OTF9.1NAtvStFeUrTcmDCUFNODiq98eLw52wyVDWvW9b-BX0",
+							"raw": "http://localhost:3000/api/users/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCIs6IkpXVCJ9.eyJlbWFpbCI6ImphLmpvc3VlbWZAZ21haWwuY29tIiwiaWF0IjoxNzM0ODg3NDk3LCJleHAiOjE3MzQ5MzA2OTd9.XXNZLOLa_ukJ3VKnuLZxOW4QGGP8tNEQRfiL-SHk8sY",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -42,7 +42,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphLmpvc3VlbWZAZ21haWwuY29tIiwiaWF0IjoxNzM0ODIyNjkxLCJleHAiOjE3MzQ4NjU4OTF9.1NAtvStFeUrTcmDCUFNODiq98eLw52wyVDWvW9b-BX0"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCIs6IkpXVCJ9.eyJlbWFpbCI6ImphLmpvc3VlbWZAZ21haWwuY29tIiwiaWF0IjoxNzM0ODg3NDk3LCJleHAiOjE3MzQ5MzA2OTd9.XXNZLOLa_ukJ3VKnuLZxOW4QGGP8tNEQRfiL-SHk8sY"
 								}
 							]
 						}
@@ -56,7 +56,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"ja.josuemf.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n  \"email\": \"email@example.com\",\r\n  \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"example@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n  \"email\": \"email@example.com\",\r\n  \"password\": \"1234526\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,7 +116,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"ja.josuemf@gmail.com\"\r\n}",
+							"raw": "{\r\n  \"email\": \"email@example.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -455,7 +455,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"ja.josuemf@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"email@example.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
