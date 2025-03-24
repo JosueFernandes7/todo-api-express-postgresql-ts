@@ -18,7 +18,6 @@ Certifique-se de ter os seguintes itens instalados no seu ambiente de desenvolvi
 
 ```bash
 git clone https://github.com/JosueFernandes7/todo-api-express-postgresql-ts.git
-cd trab4_josue
 ```
 
 2. Instale as dependências
