@@ -17,7 +17,7 @@ Certifique-se de ter os seguintes itens instalados no seu ambiente de desenvolvi
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu_usuario/trab4_josue.git
+git clone https://github.com/JosueFernandes7/todo-api-express-postgresql-ts.git
 cd trab4_josue
 ```
 
